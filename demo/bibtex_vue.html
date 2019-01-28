@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BibTex-JS with VUE</title>
+    <script src="../src/bibtex_js.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        h1 {
+            font-size: 120%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div id="app" v-bind:class="row">
+        <h1> Rendered </h1>
+        <ul>
+            <li v-for="entry in bib_entries">
+                <span v-if="entry.TITLE" class="title">{{ entry.TITLE }}</span>,
+                <div v-if="entry.AUTHOR">
+                    <span class="author">{{ entry.AUTHOR }}</span>
+                </div>
+                <div>
+                    <span v-if="entry.JOURNAL"><em><span class="journal">{{ entry.JOURNAL }}</span></em></span>
+                    <span v-if="entry.MONTH"><span class="month">{{ entry.MONTH }}</span>,</span>
+                    <span v-if="entry.YEAR"><span class="year">{{ entry.YEAR }}</span></span>.
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            bib_entries: []
+        },
+        mounted: function () {
+            var self = this;
+            $.ajax({
+                url: 'test.bib',
+                method: 'GET',
+                success: function (data) {
+                    var b = new BibtexParser();
+                    b.setInput(data);
+                    b.bibtex();
+                    self.bib_entries = b.getEntries();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    });
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>

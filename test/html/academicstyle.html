@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>
+      Bibtex-js Demo
+    </title>
+
+    <script src="../../src/bibtex_js.js" type="text/javascript" charset="utf-8"></script>
+    <bibtex src="testing.bib"></bibtex>
+
+    <style>
+      bibtex { display: none; }
+      #bibtex_errors { margin-top:10px; color: red;}
+    </style>
+  </head>
+  <body>
+
+
+    <!-- This file is for testing the academic display for bibtex_js -->
+
+    <div class="bibtex_topics"> </div>
+    <div class="bibtex_structure">
+      <div class="sections bibtextypekey">
+	<div class="section @article">
+	  <h1>Refereed Articles</h1>
+	  <div class="sort year" extra="ASC number">
+            <div class="templates"></div>
+	  </div>
+	</div>
+	<div class="section @book">
+	  <h1>Books</h1>
+	  <div class="sort year" extra="ASC number">
+            <div class="templates"></div>
+	  </div>
+	</div>
+	<div class="section @inproceedings">
+	  <h1>Conference and Workshop Papers</h1>
+	  <div class="sort year" extra="ASC number">
+            <div class="templates"></div>
+	  </div>
+	</div>
+	<div class="section @misc|@phdthesis|@mastersthesis|@bachelorsthesis|@techreport">
+	  <h1>Other Publications</h1>
+	  <div class="sort year" extra="ASC number">
+            <div class="templates"></div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div id="bibtex_errors"></div>
+    <h1> Rendered Publications</h1>
+
+    <div id="bibtex_display">
+      <div class="bibtex_template">
+	<span class="bibtextypekey"></span>
+      </div>
+    </div>
+
+  </body>
+</html>
